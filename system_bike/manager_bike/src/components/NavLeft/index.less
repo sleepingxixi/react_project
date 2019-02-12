@@ -1,0 +1,42 @@
+@import './../../style/default.less';
+.logo{
+    line-height: 100px;
+    background-color:#002140;
+    padding-left:20px;
+    img{
+        height: 50px;
+    }
+    h1{
+        color:#fff;
+        font-size: 20px;
+        line-height: 90px;
+        display: inline-block;
+        vertical-align: middle;
+        margin:0 0 0 10px;
+    }
+}
+.menuList{
+    padding-left:20px;
+    font-size: 16px;
+}
+
+.ant-menu-inline{
+    .ant-menu-submenu{
+        .ant-menu-submenu-title{
+            font-size: 20px !important;
+        }
+    }
+}
+
+// 用来改变antd组建内置样式
+.ant-menu-vertical .ant-menu-item{
+    font-size: @fontD;
+    height:50px;
+    line-height: 50px;
+
+}
+.ant-menu-vertical .ant-menu-submenu .ant-menu-submenu-title{
+    font-size: @fontD;
+    height:50px;
+    line-height: 50px;
+}
