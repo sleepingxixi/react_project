@@ -57,9 +57,9 @@ export default class Buttons extends React.Component{
                 </Card>
                 <Card title="按钮尺寸" className="card_button">
                     <Radio.Group value={size} onChange={this.handleSize}>
-                        <Radio.Button value="large">大</Radio.Button>
-                        <Radio.Button value="default">中</Radio.Button>
-                        <Radio.Button value="small">小</Radio.Button>
+                        <Radio value="large">大</Radio>
+                        <Radio value="default">中</Radio>
+                        <Radio value="small">小</Radio>
                     </Radio.Group>
                     <Button type="primary" size={size} style={{marginLeft:10}}>主按钮</Button>
                     <Button size={size}>默认按钮</Button>
