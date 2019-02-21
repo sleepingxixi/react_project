@@ -1,3 +1,4 @@
+/* 设置css模块的方式，为提醒框设置间距 */
 :local(.alert_margin) {
     margin-bottom: 15px;
 }

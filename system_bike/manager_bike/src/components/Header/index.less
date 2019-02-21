@@ -1,43 +1,60 @@
 @import './../../style/default.less';
-
-.header{
-    background-color: @colorM;
-    .header_top{
-        height:60px;
-        line-height:60px;
-        padding:0 20px;
+.header {
+    background-color: @colorM; // 头部样式设置
+    .header_top {
+        height: 60px;
+        line-height: 60px;
+        padding: 0 20px;
         text-align: right;
-        padding-right:20px;
-        a{
-            margin-left:40px;
+        padding-right: 20px;
+        a {
+            margin-left: 40px;
         }
-    }
-    .breadcrumb{
-        height:40px;
-        line-height:40px;
-        padding-left:20px;
-        border-top:2px solid #1DA57A;
-        padding-right:20px;
-        .breadcrumb_title{
+    } // 详情页的logo设置
+    .detail_logo {
+        position: relative;
+        img {
+            width: 60px;
+            height: 50px;
+            float: left;
+            margin-top: 5px;
+        }
+        span {
+            color: #fff;
+            font-size: 20px;
+            line-height: 60px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px;
+            float: left;
+        }
+    } // 面包屑设置
+    .breadcrumb {
+        height: 40px;
+        line-height: 40px;
+        padding-left: 20px;
+        border-top: 2px solid #1DA57A;
+        padding-right: 20px;
+        .breadcrumb_title {
             text-align: center;
-            &:after{
-                content:'';
+            &:after {
+                content: '';
                 position: absolute;
-                top:38px;
-                left:115px;
-                border-top:12px solid @colorM;
-                border-right:12px solid rgba(250, 252, 251, 0);
-                border-left:12px solid  rgba(250, 252, 251, 0);
+                top: 38px;
+                left: 115px;
+                border-top: 12px solid @colorM;
+                border-right: 12px solid rgba(250, 252, 251, 0);
+                border-left: 12px solid rgba(250, 252, 251, 0);
             }
         }
-        .weather{
+        .weather {
             text-align: right;
             vertical-align: middle;
-            .weather_detail{
-                margin-left:10px;
-                img{
-                    height:20px;
-                    margin-right:10px;
+            .weather_detail {
+                margin-left: 10px;
+                img {
+                    height: 20px;
+                    margin-right: 10px;
                 }
             }
         }

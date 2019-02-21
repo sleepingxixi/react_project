@@ -2,8 +2,8 @@ import React from 'react';
 import { Card, Button, notification } from 'antd';
 import Util from './../../utils/utils'
 
-export default class Notify extends React.Component{
-    openNotify=(type)=>{
+export default class Notify extends React.Component {
+    openNotify = (type) => {
         // 尝试使用两种方法进行实现
         // 方法一
         // switch(type){
@@ -32,16 +32,16 @@ export default class Notify extends React.Component{
         //         });
         //         break;
 
-        // 方法二
-        let info={
-            success:{
-                message:'提交成功。',
-                placement:'topLeft'
+        // 方法二，通过对象的方式进行设置
+        let info = {
+            success: {
+                message: '提交成功。',
+                placement: 'topLeft'
             },
             info: {
                 message: '提交信息如下。',
                 placement: 'topRight'
-            } ,
+            },
             warning: {
                 message: '警告',
                 placement: 'bottomLeft'
@@ -52,19 +52,19 @@ export default class Notify extends React.Component{
             }
         }
         notification[type]({
-            message:info[type].message,
+            message: info[type].message,
             description: '提交时间为：' + Util.formateDate(new Date().getTime()),
-            placement:info[type].placement
+            placement: info[type].placement
         });
     }
-    render(){
+    render() {
         return (
             <div>
                 <Card title="通知提醒框" className="card_button">
-                    <Button type="primary" onClick={()=>this.openNotify('success')}>Success</Button>
-                    <Button type="primary" onClick={() =>this.openNotify('info')}>Info</Button>
-                    <Button type="primary" onClick={() =>this.openNotify('warning')}>Warning</Button>
-                    <Button type="primary" onClick={() =>this.openNotify('error')}>Error</Button>
+                    <Button type="primary" onClick={() => this.openNotify('success')}>Success</Button>
+                    <Button type="primary" onClick={() => this.openNotify('info')}>Info</Button>
+                    <Button type="primary" onClick={() => this.openNotify('warning')}>Warning</Button>
+                    <Button type="primary" onClick={() => this.openNotify('error')}>Error</Button>
                 </Card>
             </div>
         )

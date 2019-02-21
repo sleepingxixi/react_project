@@ -9,12 +9,15 @@ export default class Modals extends React.Component {
         show3: false,
         show4: false
     }
+    // 点击弹框显示不同的类型
     handleModals = (type) => {
         this.setState({
             [type]: true
         })
     }
-    handleOk=()=>{
+
+    // 为确认或取消的按钮设置行为
+    handleOk = () => {
         this.setState({
             show1: false,
             show2: false,
@@ -22,7 +25,7 @@ export default class Modals extends React.Component {
             show4: false
         })
     }
-    handleCancel=()=>{
+    handleCancel = () => {
         this.setState({
             show1: false,
             show2: false,
@@ -32,14 +35,14 @@ export default class Modals extends React.Component {
     }
 
     // 对于确认的弹框，不需要自己绑定显示和隐藏事件，且可以绑定后期操作事件
-    handleConfirm=(type)=>{
+    handleConfirm = (type) => {
         Modal[type]({
-            title:'条件确认',
-            content:'你确定已经学会了吗？',
-            onCancel(){
+            title: '条件确认',
+            content: '你确定已经学会了吗？',
+            onCancel() {
                 console.log('cancel')
             },
-            onOk(){
+            onOk() {
                 console.log('ok')
             }
         })
@@ -59,7 +62,7 @@ export default class Modals extends React.Component {
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                 >
-                <p>这是一个用来练习的模态窗口哦！</p>
+                    <p>这是一个用来练习的模态窗口哦！</p>
                 </Modal>
                 <Modal
                     title='自定义页脚'
@@ -74,7 +77,7 @@ export default class Modals extends React.Component {
                 <Modal
                     title='顶部20px弹框'
                     visible={this.state.show3}
-                    style={{top:20}}
+                    style={{ top: 20 }}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                 >
@@ -93,11 +96,11 @@ export default class Modals extends React.Component {
                 </Modal>
 
                 <Card title="信息确认框" className="card_button">
-                    <Button type="primary" onClick={()=>this.handleConfirm('confirm')}>Confirm</Button>
-                    <Button type="primary" onClick={()=>this.handleConfirm('info')}>Info</Button>
-                    <Button type="primary" onClick={()=>this.handleConfirm('success')}>Success</Button>
-                    <Button type="primary" onClick={()=>this.handleConfirm('error')}>Error</Button>
-                    <Button type="primary" onClick={()=>this.handleConfirm('warning')}>Warning</Button>
+                    <Button type="primary" onClick={() => this.handleConfirm('confirm')}>Confirm</Button>
+                    <Button type="primary" onClick={() => this.handleConfirm('info')}>Info</Button>
+                    <Button type="primary" onClick={() => this.handleConfirm('success')}>Success</Button>
+                    <Button type="primary" onClick={() => this.handleConfirm('error')}>Error</Button>
+                    <Button type="primary" onClick={() => this.handleConfirm('warning')}>Warning</Button>
                 </Card>
             </div>
         )
