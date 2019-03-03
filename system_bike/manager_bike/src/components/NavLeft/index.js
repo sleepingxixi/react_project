@@ -12,18 +12,20 @@ const MenuItem = Menu.Item;
 class NavLeft extends React.Component {
     // 设置菜单默认选中为空
     state = {
-        currentKey: ''
+        currentKey: []
     }
 
     // 使用react框架生命周期的自带方法
     componentWillMount() {
         // 用来截取路由，去除#和？后面的内容
         let currentKey = window.location.hash.replace(/#|\?.*$/g, '');
+        let currentArray=[];
+        currentArray.push(currentKey);
         // 通过读取menuconfig对象，调用renderMenu方法获取菜单树
         const menu_tree_node = this.renderMenu(menuConfig);
         this.setState({
             menu_tree_node: menu_tree_node,
-            currentKey: currentKey
+            currentKey: currentArray
         });
     }
 
@@ -45,8 +47,10 @@ class NavLeft extends React.Component {
     handleClick = ({ item, key }) => {
         const { dispatch } = this.props;
         dispatch(switchMenu(item.props.title))
+        let keys=[];
+        keys.push(key);
         this.setState({
-            currentKey: key
+            currentKey: keys
         })
     }
     render() {
@@ -60,7 +64,7 @@ class NavLeft extends React.Component {
                     theme="dark"
                     mode="vertical"
                     className="menuList"
-                    selectKeys={this.state.currentKey}
+                    selectedKeys={this.state.currentKey}
                     onClick={this.handleClick}
                 >
                     {this.state.menu_tree_node}

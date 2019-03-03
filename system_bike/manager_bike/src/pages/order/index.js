@@ -4,8 +4,11 @@ import axios from './../../axios/index';
 import Utils from '../../utils/utils';
 import BaseForm from '../../components/BaseForm';
 import './../../style/common.less';
+/**
+ * 订单管理
+ */
 const FormItem = Form.Item;
-// const Option = Select.Option;
+
 export default class Order extends React.Component {
     state = {
         orderInfo: {},
@@ -15,6 +18,7 @@ export default class Order extends React.Component {
     params = {
         page: 1
     }
+    // 用于设置筛选的按钮或选框的相关内容
     formList = [
         {
             type: 'SELECT',
@@ -25,9 +29,9 @@ export default class Order extends React.Component {
             width: 80,
             list: [{ id: '0', name: '全部' }, { id: '1', name: '北京' }, { id: '2', name: '天津' }, { id: '3', name: '上海' }]
         },
-        // {
-        //     type: '时间查询'
-        // },
+        {
+            type: '时间查询'
+        },
         {
             type: 'SELECT',
             label: '订单状态',
@@ -43,10 +47,13 @@ export default class Order extends React.Component {
         this.requestList()
     }
 
+    // 筛选
     handleFilter = (params) => {
         this.params = params;
         this.requestList();
     }
+
+    // 数据请求
     requestList = () => {
         let _this = this;
         axios.axios_ajax({
@@ -60,7 +67,6 @@ export default class Order extends React.Component {
                 item.key = index;
                 return item;
             });
-
             this.setState({
                 list,
                 pagination: Utils.pagination(res, (current) => {
@@ -119,6 +125,7 @@ export default class Order extends React.Component {
             }
         })
     }
+    // 选中指定的行
     onRowClick = (record, index) => {
         let selectKey = [index];
         this.setState({
@@ -127,6 +134,7 @@ export default class Order extends React.Component {
         })
     }
 
+    // 订单详情，需要先选中一条信息
     openOrderDetail = () => {
         let item = this.state.selectedItem;
         if (!item) {
@@ -138,6 +146,7 @@ export default class Order extends React.Component {
         }
         window.open(`/#/common/order/detail/${item.id}`, '_blank')
     }
+
     render() {
         const columns = [
             {
@@ -188,21 +197,22 @@ export default class Order extends React.Component {
                 dataIndex: 'user_pay'
             }
         ]
+        // 设置标签和表单布局
         const formItemLayout = {
             labelCol: { span: 5 },
             wrapperCol: { span: 19 }
         }
+        // 设置选框样式
         const selectedRowKeys = this.state.selectedRowKeys;
         const rowSelection = {
             type: 'radio',
             selectedRowKeys
         }
-        // console.log('111',this.state);
+
         return (
             <div>
                 <Card>
                     <BaseForm formList={this.formList} filterSubmit={this.handleFilter} />
-                    {/* <BaseForm formList={this.formList}/> */}
                 </Card>
                 <Card style={{ marginTop: 10 }}>
                     <Button type="primary" onClick={this.openOrderDetail}>订单详情</Button>

@@ -3,8 +3,12 @@ import { Card, Button, Table, Form, Select, Modal, message } from 'antd';
 import axios from './../../axios/index';
 import Utils from './../../utils/utils';
 import './../../style/common.less';
+/**
+ * 城市管理
+ */
 const FormItem = Form.Item;
 const Option = Select.Option;
+
 export default class City extends React.Component {
 
     state = {
@@ -14,6 +18,8 @@ export default class City extends React.Component {
     params = {
         page: 1
     }
+
+    // 加载页面数据
     componentDidMount() {
         this.requestList();
     }
@@ -70,6 +76,7 @@ export default class City extends React.Component {
             }
         })
     }
+
     render() {
         const columns = [
             {
@@ -113,6 +120,7 @@ export default class City extends React.Component {
                 dataIndex: 'sys_user_name'
             }
         ]
+
         return (
             <div>
                 <Card>
@@ -146,6 +154,7 @@ export default class City extends React.Component {
     }
 }
 
+// 筛选
 class FilterForm extends React.Component {
 
     render() {
@@ -219,6 +228,7 @@ class FilterForm extends React.Component {
 }
 FilterForm = Form.create({})(FilterForm);
 
+// 城市开通
 class OpenCityForm extends React.Component {
     render() {
         const formItemLayout = {
@@ -230,6 +240,7 @@ class OpenCityForm extends React.Component {
             }
         }
         const { getFieldDecorator } = this.props.form;
+
         return (
             <Form layout="horizontal">
                 <FormItem label="选择城市" {...formItemLayout}>

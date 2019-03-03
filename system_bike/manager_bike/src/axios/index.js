@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Modal } from 'antd';
 
 export default class Axios {
+    // 通过jsonp方法请求处理天气的api返回的数据，因为涉及到跨域
     static jsonp(options) {
         return new Promise((resolve, reject) => {
             JsonP(options.url, {
@@ -52,7 +53,8 @@ export default class Axios {
                 } else {
                     reject(response.data);
                 }
-            }).catch((error)=>{
+            }).catch((error) => {
+                // 可用来捕获异常，包括请求超时
                 if (options.data && options.data.isShowLoading !== false) {
                     loading = document.getElementById('ajaxLoading');
                     loading.style.display = 'none';

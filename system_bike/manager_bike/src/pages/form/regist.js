@@ -1,15 +1,18 @@
 import React from 'react';
-import { Card, Form, Input, Radio, DatePicker, InputNumber, Select, Switch, TimePicker, Icon, Upload, Checkbox, Button} from 'antd';
+import { Card, Form, Input, Radio, DatePicker, InputNumber, Select, Switch, TimePicker, Icon, Upload, Checkbox, Button } from 'antd';
 import moment from 'moment';
-
-const FormItem=Form.Item;
+/**
+ * 注册的表单
+ */
+const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 const Option = Select.Option;
-const { TextArea} =Input;
+const { TextArea } = Input;
+// 兴趣的可选项
 const children = [
     {
-        key:'1',
-        content:'爬山'
+        key: '1',
+        content: '爬山'
     },
     {
         key: '2',
@@ -24,18 +27,20 @@ const children = [
         content: '绘画'
     }
 ];
-const AllOptions=[];
+const AllOptions = [];
 for (let i = 0; i < children.length; i++) {
     AllOptions.push(<Option key={children[i].key}>{children[i].content}</Option>)
 }
+// 上传头像的方法，添加监听事件，确保上传头像完成
 function getBase64(img, callback) {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result));
     reader.readAsDataURL(img);
 }
-class Regist extends React.Component{
-    state={
-        loading:false
+
+class Regist extends React.Component {
+    state = {
+        loading: false
     }
     handleChange = (info) => {
         if (info.file.status === 'uploading') {
@@ -50,33 +55,36 @@ class Regist extends React.Component{
             }));
         }
     }
-    handleSubmit=()=>{
+    handleSubmit = () => {
         let regist_info = this.props.form.getFieldsValue();
         console.log(JSON.stringify(regist_info));
     }
-    render(){
+
+    render() {
         const { getFieldDecorator } = this.props.form;
-        
-        const formItemLayout={
-            labelCol:{
-                xs:24,
-                sm:4
+        // 设置表单标签和内容的布局，以及当页面缩小后的布局
+        const formItemLayout = {
+            labelCol: {
+                xs: 24,
+                sm: 4
             },
-            wrapperCol:{
-                xs:24,
-                sm:16
+            wrapperCol: {
+                xs: 24,
+                sm: 16
             }
         }
 
-        const offsetLayout={
-            wrapperCol:{
-                xs:24,
-                sm:{
-                    span:12,
-                    offset:4
+        // 设置没有label的表单项的布局
+        const offsetLayout = {
+            wrapperCol: {
+                xs: 24,
+                sm: {
+                    span: 12,
+                    offset: 4
                 }
             }
         }
+        // 设置上传前后和过程中的图标
         const uploadButton = (
             <div>
                 <Icon type={this.state.loading ? 'loading' : 'plus'} />
@@ -84,19 +92,20 @@ class Regist extends React.Component{
             </div>
         );
         const imageUrl = this.state.imageUrl;
+
         return (
             <div>
                 <Card title="注册表单">
-                <Form >
-                    <FormItem label="用户名" {...formItemLayout} >
-                        {getFieldDecorator('userName', {
-                            rules: [
-                                { required: true, message: '名字不能为空' }
-                            ],
-                        })(
-                            <Input placeholder="UserName" style={{ maxWidth: 400 }}></Input>
-                        )}
-                    </FormItem>
+                    <Form >
+                        <FormItem label="用户名" {...formItemLayout} >
+                            {getFieldDecorator('userName', {
+                                rules: [
+                                    { required: true, message: '名字不能为空' }
+                                ],
+                            })(
+                                <Input placeholder="UserName" style={{ maxWidth: 400 }}></Input>
+                            )}
+                        </FormItem>
                         <FormItem label="密码" {...formItemLayout}>
                             {getFieldDecorator('password', {
                                 rules: [
@@ -110,11 +119,12 @@ class Regist extends React.Component{
                             {getFieldDecorator('gender', {
                                 rules: [
                                     { required: true, message: '必须填写性别' }
-                                ]})(
-                                    <RadioGroup>
-                                        <Radio value={1}>男</Radio>
-                                        <Radio value={2}>女</Radio>
-                                    </RadioGroup>
+                                ]
+                            })(
+                                <RadioGroup>
+                                    <Radio value={1}>男</Radio>
+                                    <Radio value={2}>女</Radio>
+                                </RadioGroup>
                             )}
                         </FormItem>
                         <FormItem label="出生日期" {...formItemLayout}>
@@ -123,12 +133,12 @@ class Regist extends React.Component{
                                     { required: true, message: '必须填写日期' }
                                 ]
                             })(
-                                <DatePicker/>
+                                <DatePicker />
                             )}
                         </FormItem>
                         <FormItem label="年龄" {...formItemLayout}>
                             {getFieldDecorator('age', {
-                                initialValue:18
+                                initialValue: 18
                             })(
                                 <InputNumber max={150} />
                             )}
@@ -163,13 +173,13 @@ class Regist extends React.Component{
                         <FormItem label="联系地址" {...formItemLayout} >
                             {getFieldDecorator('address', {
                             })(
-                                <TextArea placeholder="北京海淀区" autosize={{ minRows: 2, maxRows: 6 }} style={{ maxWidth: 600}} />
-                          )}
+                                <TextArea placeholder="北京海淀区" autosize={{ minRows: 2, maxRows: 6 }} style={{ maxWidth: 600 }} />
+                            )}
                         </FormItem>
                         <FormItem label="早起时间" {...formItemLayout}>
                             {getFieldDecorator('morningTime', {
                             })(
-                                <TimePicker  defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} />,
+                                <TimePicker defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} />,
                             )}
                         </FormItem>
                         <FormItem label="头像" {...formItemLayout}>
@@ -181,7 +191,7 @@ class Regist extends React.Component{
                                 action="//jsonplaceholder.typicode.com/posts/"
                                 onChange={this.handleChange}
                             >
-                                {imageUrl ? <img src={imageUrl} alt="avatar" style={{width:'100%'}}/> : uploadButton}
+                                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
                             </Upload>
                         </FormItem>
                         <FormItem  {...offsetLayout}>
@@ -190,7 +200,7 @@ class Regist extends React.Component{
                         <FormItem  {...offsetLayout}>
                             <Button type="primary" onClick={this.handleSubmit}>注册</Button>
                         </FormItem>
-                </Form>
+                    </Form>
                 </Card>
             </div>
         );

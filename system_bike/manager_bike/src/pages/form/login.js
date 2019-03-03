@@ -1,9 +1,12 @@
 import React from 'react';
-import { Card, Form, Input, Button, Checkbox, message,Icon } from 'antd';
+import { Card, Form, Input, Button, Checkbox, message, Icon } from 'antd';
 import './../ui/ui.less'
-
+/**
+ * 登录的表单
+ */
 const FormItem = Form.Item;
 class LoginForm extends React.Component {
+
     checkInfo = () => {
         // 能够获取表单里的提交信息
         let userInfo = this.props.form.getFieldsValue();
@@ -13,6 +16,7 @@ class LoginForm extends React.Component {
             }
         });
     }
+
     render() {
         const { getFieldDecorator } = this.props.form;
         return (
@@ -31,16 +35,17 @@ class LoginForm extends React.Component {
                         </FormItem>
                     </Form>
                 </Card>
+
                 <Card title="默认登录表单">
                     <Form style={{ width: 300 }}>
                         <FormItem>
                             {getFieldDecorator('userName', {
                                 rules: [
                                     { required: true, message: 'Please input your username!' },
-                                    { pattern:/^[a-zA-Z]$/g, message:'用户名必须只能是字母'}
+                                    { pattern: /^[a-zA-Z]*$/g, message: '用户名必须只能是字母' }
                                 ],
                             })(
-                                <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)'}}/>} placeholder="UserName"></Input>
+                                <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="UserName"></Input>
                             )}
                         </FormItem>
                         <FormItem>
@@ -49,7 +54,7 @@ class LoginForm extends React.Component {
                                     { required: true, message: 'Please input your Password!' },
                                     { min: 8, message: "密码不能小于8位" }],
                             })(
-                                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }}/>} placeholder="PassWord" type="password"></Input>
+                                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="PassWord" type="password"></Input>
                             )}
                         </FormItem>
                         <FormItem>
